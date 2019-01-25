@@ -1,0 +1,16 @@
+<h1>Recipes of <%= @search_keyword %></h1>
+
+<% if @recipes.empty? %>
+    <p>Sorry. There is no recipe for the ingredient <%= @search_keyword %> !!</p>
+<% else %>
+    <table border="1">
+        <tr> <th>Thumbnail</th> <th>Title</th> <th>Rank</th></tr>
+        <% @recipes.each do |recipe| %>
+            <tr class=<%= cycle('even', 'odd') %>>
+                <td><%= link_to image_tag(recipe["image_url"], size: "100"), recipe["source_url"] %> </td>
+                <td><%= link_to sanitize(recipe["title"]), recipe["source_url"] %> </td>
+                <td><%= recipe["social_rank"]%></td>
+            </tr>
+    <% end %>
+</table>
+<% end %>
